@@ -6,6 +6,11 @@ git status -- view status
 
 git add <file name>
 
+git add . :: add one by one
+
+git add --all     !add all
+
+
 git commit -m "comment"
 
 git push 
