@@ -1,0 +1,171 @@
+kkxh-3ncg-7wjk
+localhost:8069/web/login
+
+
+localhost:8069/web/database/manager 
+
+
+
+https://www.youtube.com/watch?v=ZrCN3L0oAKE&list=PLqRRLx0cl0hoFjiN1QZQYNa1LzdYfJAH3
+https://www.youtube.com/watch?v=CkUulwB6k3o&t=385s
+
+
+Traditional 
+Delegation
+
+Traditional -   Class Inheritance
+                    
+                    Used to add features
+                    New class compatible with existing views
+                    Stored in same table
+
+            -   Prototype Inheritance
+
+                    Used to copy features
+                    New class ignored by existing views
+                    Stored in different tables
+
+Delegation
+
+        Multiple Inheritance is possible
+        New class ignored by existing
+
+
+
+
+ 
+>>>>>>models
+
+class SaleOrderInherit(models.Model):
+	_inherit = 'sale.order'
+
+
+####for views inherit
+
+
+<record id="sale_order_inherit" model="ir.ui.view">
+   	 <field name="name">sale.order.inherit</field>
+   	 <field name="model">sale.order</field>
+   	 <field name="inherit_id" ref="sale.view_order_form" />
+   	 <field name="arch" type="xml">
+   		 <field name="partner_id" position="before">
+   			 <field name="patient_name" />
+   		 </field>
+   	 </field>
+    </record>
+
+
+
+<xpath expr="//field[@name='sale_order_template_id']" position="after">
+                        <field name="reference"/>
+                    </xpath>
+
+
+
+
+https://www.youtube.com/watch?v=ZrCN3L0oAKE&list=PLqRRLx0cl0hoFjiN1QZQYNa1LzdYfJAH3
+
+
+
+**********git remote*****************
+ https://docs.github.com/en/github/importing-your-projects-to-github/importing-source-code-to-github/adding-an-existing-project-to-github-using-the-command-line
+
+
+
+
+
+
+##########odoo gitup link for om hospital moduleS
+https://github.com/odoomates/Development-Tutorials/tree/12.0/om_hospital
+
+
+#####model constraints
+
+https://www.odoo.com/documentation/13.0/developer/howtos/backend.html#model-constraints
+
+
+##################search view fillter and group:
+
+  <!--        Search View    -->
+        <record model="ir.ui.view" id="movies.search">
+            <field name="name">Movies search</field>
+            <field name="model">movies.movies</field>
+            <field name="arch" type="xml">
+                <search string="Search View">
+                    <field name="name"
+                           filter_domain="['|',('name', 'ilike', self),('actor', 'ilike', self),('actress', 'ilike', self),('about', 'ilike', self)]"/>
+                    <field name="actor"/>
+                    <field name="actress"/>
+                    <field name="about"/>
+                    <filter name="time" domain="[('time','>','120')]"/>
+                    <filter name="actor" context="{'group_by':'actor'}"/>
+                    <filter name="actor" context="{'group_by':'actress'}"/>
+                </search>
+            </field>
+        </record>
+
+
+
+
+
+######################### security file  permissions
+
+
+<record id="fleet_rule_vehicle_visibility_user" model="ir.rule">
+   <field name="name">User can only see his/her vehicle</field>
+   <field name="model_id" ref="model_fleet_vehicle"/>
+   <field name="groups" eval="[(4, ref('fleet_group_user'))]"/>
+   <field name="perm_read" eval="True"/>
+   <field name="perm_write" eval="True"/>
+   <field name="perm_create" eval="False"/>
+   <field name="perm_unlink" eval="False"/>
+   <field name="domain_force">[('driver_id','=',user.partner_id.id)]</field>
+</record>
+
+
+
+***************stop the odoo server ************
+$ ps -fA | grep odoo
+501 81211 12368   0  10:11PM ttys000    0:03.12  
+python -m SimpleHTTPServer
+
+$ kill 81211
+
+
+
+
+
+odoo project ######
+
+https://github.com/odoomates/odooapps.git
+
+
+
+
+##########kanban view#####3333
+       <record model="ir.ui.view" id="college.kanban">
+            <field name="name">Student List</field>
+            <field name="model">college.college</field>
+            <field name="arch" type="xml">
+                <kanban class="kanban_main">
+                    <field name="name"/>
+                    <field name="value"/>
+
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="kanban_view_box">
+                                <div class="kanban_title">
+                                    <strong class="kanban_title_field">
+                                        <field name="name"/>
+                                    </strong>
+                                </div>
+                                <div>
+                                    <field name="value"/>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
