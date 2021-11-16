@@ -169,3 +169,7 @@ https://github.com/odoomates/odooapps.git
             </field>
         </record>
 
+
+####git auto saved password script
+
+git config --global credential.helper 'cache --timeout=3600
