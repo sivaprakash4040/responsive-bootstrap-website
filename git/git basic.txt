@@ -1,0 +1,26 @@
+git is versiion control tool
+
+git clone  - use for clone code from gitub
+
+git status -- view status
+
+git add <file name>
+
+git commit -m "comment"
+
+git push 
+
+##git branch
+
+git branch --show branches
+
+git checkout -b "create branch name"
+
+git checkout <branch name>  :: for change branch
+
+####triks in gitup
+
+git config --global credential.helper 'cache --timeout=3600
+
+
+
