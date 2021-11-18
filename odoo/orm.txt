@@ -1,0 +1,20 @@
+orm methods.......
+
+search :
+        search method use to search record in table
+        
+        def search_method(self):
+          for record in self:
+              data=self.env['model.model'].search([])
+              print(data)
+ref
+browse
+exists
+create
+write
+copy
+unlink
+default_get
+search_count
+name_get
+name_search
