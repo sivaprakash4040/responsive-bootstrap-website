@@ -5,16 +5,67 @@ search :
         
         def search_method(self):
           for record in self:
-              data=self.env['model.model'].search([])
+              data=self.env['model.model'].search([('name','=','name'),('name','=','name')])
               print(data)
+
+return:
+(1,2,3,4,5,6)
+
+
 ref
+   
 browse
-exists
+   
+    browse method use to fetch data from odoo model api
+code
+   data=self.env['school.student'].search([])
+     siva=data.browse([2])
+      print(siva.tamil)
+
+return:
+    
+   
+exists:
+   
+exists method use to check id is presnt or not
+
+code
+            def delete_method(self):
+        for record in self:
+            data=self.env['school.student'].search([])
+           
+            siva=data.browse([16])
+            print(siva.exists())
+            if siva.exists():
+                print("yes")
+            else:
+                print("no")    
+
+
+  return
+
+
+                ids 1 , 2 ,5 
+if 1 yes 
+
+if 3 no
+
 create
 write
 copy
 unlink
 default_get
-search_count
+search_count:
+
+    search method use to search record count  in table
+        
+        def search_method(self):
+          for record in self:
+              data=self.env['model.model'].search([('name','=','name'),('name','=','name')])
+              print(data)
+
+return:
+  5   it return int value
+
 name_get
 name_search
