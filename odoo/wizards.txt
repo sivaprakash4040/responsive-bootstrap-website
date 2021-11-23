@@ -1,0 +1,45 @@
+#view for wizards
+
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+ <data>
+     <record model="ir.ui.view" id="school.student_wizards">
+            <field name="name">student list</field>
+            <field name="model">school.wizards</field>
+            <field name="arch" type="xml">
+
+                <form>
+                   <group>
+                        <field name="name" />
+
+
+                   </group>
+
+                </form>
+            </field>
+        </record>
+
+ </data>
+</odoo>
+ <record model="ir.actions.act_window" id="school.student_wizards">
+           <field name="name">Mark List</field>
+           <field name="res_model">school.wizards</field>
+           <field name="view_mode">form</field>
+                <field name = "view_id" ref = "school.student_wizards"/>
+             <field name = "target" >new</field>
+<!--             it use to view wizards-->
+      
+       </record>
+
+#class for wizards
+
+from odoo import models, fields, api
+
+
+class mark_edit(models.TransientModel):
+    _name = 'school.wizards'
+
+#link wizard in button
+
+  <button name="%(school.student_wizards)d"  type ="action" string="Edit" class="btn btn-success btn-lg "/>
