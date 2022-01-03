@@ -173,3 +173,40 @@ https://github.com/odoomates/odooapps.git
 ####git auto saved password script
 
 git config --global credential.helper 'cache --timeout=3600
+
+
+#####sequence add in bikerent module:
+ sequence=fields.Char(
+        copy=False, default=lambda self:_('New'),
+        required=True)
+
+    @api.model
+    def create(self, vals):
+        if not vals.get('sequence') or vals['sequence'] == _('New'):
+            vals['sequence'] = self.env['ir.sequence'].next_by_code('bikerent.bikerent') or _('New')
+        return super(bikerent, self).create(vals)
+
+###view for sequence 
+
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Sequences for lead mining requests -->
+        <record id="seq_bikerent_bikerent1" model="ir.sequence">
+            <field name="name">sequence</field>
+            <field name="code">bikerent.bikerent</field>
+            <field name="prefix">BR</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+    </data>
+</odoo>
+
+	
+	
+	
+	
+	
+
+
