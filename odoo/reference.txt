@@ -205,6 +205,92 @@ git config --global credential.helper 'cache --timeout=3600
 
 	
 	
+########git push comment
+
+
+harmony@H-53:/opt/odoo/sicotest13-odoo/src/sico/sico$ git status
+On branch 13.0
+Your branch is up to date with 'git.sodexis/13.0'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   sico/models/purchase.py
+
+no changes added to commit (use "git add" and/or "git commit -a")
+harmony@H-53:/opt/odoo/sicotest13-odoo/src/sico/sico$ git stash save "test"
+Saved working directory and index state On 13.0: test
+harmony@H-53:/opt/odoo/sicotest13-odoo/src/sico/sico$ git pull
+remote: Enumerating objects: 1615, done.
+remote: Counting objects: 100% (1615/1615), done.
+remote: Compressing objects: 100% (752/752), done.
+remote: Total 1509 (delta 759), reused 1425 (delta 681), pack-reused 0
+Receiving objects: 100% (1509/1509), 10.55 MiB | 1002.00 KiB/s, done.
+Resolving deltas: 100% (759/759), completed with 77 local objects.
+From https://gitlab.sodexis.com/sico/sico
+ * [new branch]      10.0       -> git.sodexis/10.0
+ * [new branch]      10.0Prod   -> git.sodexis/10.0Prod
+ * [new branch]      10.0Test   -> git.sodexis/10.0Test
+ * [new branch]      daxaware   -> git.sodexis/daxaware
+ * [new branch]      master     -> git.sodexis/master
+Already up to date.
+harmony@H-53:/opt/odoo/sicotest13-odoo/src/sico/sico$ git branch -v
+* 13.0 87bf595 [ID: 22970 ] Check Number
+harmony@H-53:/opt/odoo/sicotest13-odoo/src/sico/sico$ git stash apply
+On branch 13.0
+Your branch is up to date with 'git.sodexis/13.0'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   sico/models/purchase.py
+
+no changes added to commit (use "git add" and/or "git commit -a")
+harmony@H-53:/opt/odoo/sicotest13-odoo/src/sico/sico$ git add .
+harmony@H-53:/opt/odoo/sicotest13-odoo/src/sico/sico$ git commit -m "[ID:23084] Order Date/Confirmation Date"
+[13.0 e1b2388] [ID:23084] Order Date/Confirmation Date
+ 1 file changed, 7 insertions(+)
+harmony@H-53:/opt/odoo/sicotest13-odoo/src/sico/sico$ git show
+commit e1b23888f491c527a05493de9063040b38f3f224 (HEAD -> 13.0)
+Author: sivaprakash <sivaprakash@sodexis.com>
+Date:   Fri Feb 18 17:43:17 2022 +0530
+
+    [ID:23084] Order Date/Confirmation Date
+
+diff --git a/sico/models/purchase.py b/sico/models/purchase.py
+index 329b827..cb10879 100644
+--- a/sico/models/purchase.py
++++ b/sico/models/purchase.py
+@@ -27,6 +27,13 @@ class PurchaseOrder(models.Model):
+             default['vendor_no'] = self.partner_id.vendor_no
+         return super(PurchaseOrder, self).copy(default=default)
+ 
++    def button_confirm(self):
++        res=super().button_confirm()
++        for order in self:
++            if order.date_approve:
++                order.date_order = order.date_approve
++        return res
++
+ 
+ class PurchaseOrderLine(models.Model):
+     _inherit = 'purchase.order.line'
+harmony@H-53:/opt/odoo/sicotest13-odoo/src/sico/sico$ git push
+Enumerating objects: 14, done.
+Counting objects: 100% (14/14), done.
+Delta compression using up to 6 threads
+Compressing objects: 100% (5/5), done.
+Writing objects: 100% (5/5), 547 bytes | 547.00 KiB/s, done.
+Total 5 (delta 4), reused 0 (delta 0), pack-reused 0
+remote: 
+remote: To create a merge request for 13.0, visit:
+remote:   https://gitlab.sodexis.com/sico/sico/-/merge_requests/new?merge_request%5Bsource_branch%5D=13.0
+remote: 
+To https://gitlab.sodexis.com/sico/sico.git
+   87bf595..e1b2388  13.0 -> 13.0
+harmony@H-53:/opt/odoo/sicotest13-odoo/src/sico/sico$ 
+
+	
 	
 	
 	
